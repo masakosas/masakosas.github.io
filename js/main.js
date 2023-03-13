@@ -1,11 +1,9 @@
-window.onload=function(){
-
 let offset = 0;
 const limit = 15;
 let isFetchInProgress = false;
 
 async function getResponse(offset) {
-  const response = await fetch(`https://chocofood.kz/fast-hermes/v1/delivery_area_content/restaurants/?page=${offset/limit}&limit=${limit}&longitude=76.907176&latitude=43.237849`);
+  const response = await fetch(`https://chocofood.kz/fast-hermes/v1/delivery_area_content/restaurants/?page=${(offset/limit)||1}&limit=${limit}&longitude=76.907176&latitude=43.237849`);
   const res = await response.json();
   const list = document.querySelector('.content');
   const newList = document.querySelector('.content2');
@@ -66,7 +64,7 @@ observer.observe(obs);
 
 
 
-function initObserver() {
+function initObserver(callback) {
   const obs = document.querySelector('.observer');
 
   const options = {
@@ -135,5 +133,6 @@ function oldRating(rate) {
   };
 }
 
-initObserver();
-};
+getResponse();
+
+initObserver(callback);
