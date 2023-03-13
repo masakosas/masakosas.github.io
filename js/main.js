@@ -1,3 +1,5 @@
+window.onload=function(){
+
 let offset = 0;
 const limit = 15;
 let isFetchInProgress = false;
@@ -134,3 +136,4 @@ function oldRating(rate) {
 }
 
 initObserver();
+};
